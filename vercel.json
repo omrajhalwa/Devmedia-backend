@@ -1,0 +1,13 @@
+{
+    "name": "my-mongodb-api",
+    "builds": [{ "src": "index.js", "use": "@now/node-server" }],
+    "version": 2,
+    "env": {
+      "CLOUD_NAME":"dfrapktcn",
+"CLOUD_API_KEY":"383928625188247",
+"CLOUD_API_SECRET":"zEN3MSePSnyh9Q9CFcLp0CIQCdc",
+"TOKEN_SECRET":"sfbvgj$sbrsaberhargb",
+"PORT":"8080",
+"MONGO_URI":"mongodb+srv://omraj72470:powerofhanuman@cluster0.mregzkf.mongodb.net/"
+    }
+  }
