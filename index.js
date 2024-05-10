@@ -17,7 +17,8 @@ dotenv.config({
 
 const corsOptions={
     origin:"http://localhost:3000",
-    credentials:true
+    credentials:true,
+    methods:["GET","POST","PUT","DELETE","PATCH","OPTIONS"]
 }
 app.use(cors(corsOptions));
 
@@ -35,7 +36,9 @@ app.use("/api/v1/user",userRoutes);
 app.use("/api/v1/tweet",tweetRoutes);
 app.use("/api/v1/message",messageRoutes);
 
-
+app.get("/",(req,res)=>{
+    res.send("server start");
+})
 
 
 server.listen(process.env.PORT,()=>{
