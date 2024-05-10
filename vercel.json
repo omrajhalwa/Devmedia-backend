@@ -5,9 +5,17 @@
     "routes":[{"src":"/(.*)","dest":"/","methods":["GET","POST","PUT","DELETE","PATCH","OPTIONS"]}],
 
     "functions": {
-      "api/userRoute.js": {
+    
+      "api/userController.js": {
+        "maxDuration": 15
+      },
+      "api/tweetController.js": {
+        "maxDuration": 15
+      },
+      "api/messageController.js": {
         "maxDuration": 15
       }
+
     
     }
     
