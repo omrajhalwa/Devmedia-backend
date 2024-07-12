@@ -67,18 +67,18 @@ export const Login = async (req, res) => {
       })
     }
 
-
+     console.time('emailfind');
     const user = await User.findOne({ email });
-
+      console.timeEnd('emailfind');
     if (!user) {
       return res.status(401).json({
         message: "Incorrect Email or Password",
         success: false
       })
     }
-
+              console.time("bycrpyt");
     const isMatch = await bcryptjs.compare(password, user.password);
-
+              console.timeEnd("bycrpyt"); 
     if (!isMatch) {
 
       return res.status(401).json({
@@ -91,9 +91,9 @@ export const Login = async (req, res) => {
     const tokenData = {
       userId: user._id
     }
-
+                console.time("jwtsign");
     const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET, { expiresIn: '1d' });
-
+                console.timeEnd("jwtsign");
 
     return res.status(201).cookie("token", token, { expiresIn: '1d', httpOnly: true }).json({
       message: `Welcome back ${user.name}`,

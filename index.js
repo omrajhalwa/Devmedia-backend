@@ -16,7 +16,7 @@ dotenv.config({
 
 
 const corsOptions={
-    origin:"http://localhost:3000",
+    origin:"https://devmedia-frontend.vercel.app/",
     credentials:true,
     methods:["GET","POST","PUT","DELETE","PATCH","OPTIONS"]
 }
