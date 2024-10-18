@@ -289,7 +289,6 @@ export const addEducation = async (req, res) => {
     })
     const user = await User.findById(id);
     
-  
     user?.education?.push(education?._id);
 
     await user.save();

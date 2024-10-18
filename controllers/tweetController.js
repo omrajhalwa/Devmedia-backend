@@ -143,20 +143,23 @@ export const getAllTweet = async (req,res)=>{
     try {
         const id=req.params.id;
         const loggedInUser= await User.findById(id);
-        const loggedInUserTweet= await Tweet.find({userId:id}).populate({
+
+        const start = Date.now();
+        const loggedInUserTweet= await Tweet.find({userId:id}).explain("executionStats").populate({
             path: 'comments', // Populate comments field within the tweet
-          
-          });
+        });
+        const end = Date.now();
+        console.log(`Query took ${end - start} ms`);
       
       
 
         const followingUserTweet = await Promise.all(loggedInUser.following.map((otherUserId)=>{
             return Tweet.find({userId:otherUserId}).populate({
                 path: 'comments', // Populate comments field within the tweet
-              })
+            })
         }));
         return res.status(200).json({
-            tweets:loggedInUserTweet.concat(...followingUserTweet)
+            // tweets:loggedInUserTweet.concat(...followingUserTweet)
         })
     } catch (error) {
         console.log(error);
